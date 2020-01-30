@@ -17,5 +17,18 @@ namespace ConsoleAdventure.Project.Models
       Items = new List<Item>();
       Exits = new Dictionary<string, IRoom>();
     }
+
+    public IRoom ChangeRoom(string exitStr)
+    {
+      IRoom nextRoom;
+      if (Exits.TryGetValue(exitStr, out nextRoom))
+      {
+        return nextRoom;
+      }
+      else
+      { // Will this break things? 
+        return null;
+      }
+    }
   }
 }

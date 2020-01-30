@@ -33,9 +33,12 @@ namespace ConsoleAdventure.Project.Models
       Room3.Exits.Add("west", Room2);
       Room4.Exits.Add("west", Room3);
 
+      Room1.Items.Add(airlock);
+      Room1.Items.Add(stasisPod);
+      Room1.Items.Add(fireExtinguisher);
+      Room2.Items.Add(telescopesComputers);
 
-
-
+      CurrentRoom = Room1;
 
 
     }
