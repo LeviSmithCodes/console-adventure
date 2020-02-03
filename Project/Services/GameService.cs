@@ -60,13 +60,21 @@ namespace ConsoleAdventure.Project
           System.Console.WriteLine("As you open the airlock door to the next room, oxygen floods back into it - igniting once it reaches the exposed electrical panel that started the fire that previously charred the room and the plants within. Flames erupt all around you. What do you do?");
           string response = System.Console.ReadLine().ToLower().Trim();
           // TODO Need to check if in inventory
-          if (response == "use fire extinguisher")
+          if (response == "use fire extinguisher" && _game.CurrentPlayer.Inventory.Any(i => i.Name == "Fire Extinguisher"))
           {
             System.Console.Clear();
             System.Console.WriteLine("As you use the fire extinguisher to extinguish the flames, the force of the expelled material pushes you against the wall. You gain a handhold and are able to save yourself from the flames.\nPress any key to continue");
             System.Console.ReadKey();
             System.Console.Clear();
             return true;
+          }
+          else if (response == "use fire extinguisher")
+          {
+            System.Console.Clear();
+            System.Console.WriteLine("Unfortunately, this item is not in your inventory.\nPress any key to continue");
+            System.Console.ReadKey();
+            System.Console.Clear();
+            return false;
           }
           else
           {
@@ -96,9 +104,11 @@ namespace ConsoleAdventure.Project
       // System.Console.WriteLine($"{_game.CurrentPlayer.Inventory}");
       if (_game.CurrentPlayer.Inventory.Count == 0)
       {
+        System.Console.Clear();
         Messages.Add("There is nothing in your inventory.");
         return;
       }
+      System.Console.Clear();
       Messages.Add("Your inventory consists of: ");
       foreach (var item in _game.CurrentPlayer.Inventory)
       {
@@ -129,9 +139,9 @@ namespace ConsoleAdventure.Project
     public void Setup(string playerName)
     {
 
-      Player CurrentPlayer = new Player(playerName);
-      Messages.Add($"created {CurrentPlayer.Name}");
-      Messages.Add($"Has {CurrentPlayer.Inventory}");
+      _game.CurrentPlayer = new Player(playerName);
+      Messages.Add($"created {_game.CurrentPlayer.Name}");
+      Messages.Add($"Has {_game.CurrentPlayer.Inventory}");
     }
     ///<summary>When taking an item be sure the item is in the current room before adding it to the player inventory, Also don't forget to remove the item from the room it was picked up in</summary>
     public void TakeItem(string itemName)
@@ -142,13 +152,24 @@ namespace ConsoleAdventure.Project
         return;
       }
       //Enumerable currentItem = _game.CurrentRoom.Items.Where(i => i.Name == itemName);
-      if (_game.CurrentRoom.Items.Any(i => i.Name == itemName))
+      if (_game.CurrentRoom.Items.Any(i => i.Name.ToLower() == itemName && i.Takeable == false))
       {
-        _game.CurrentPlayer.Inventory.Add(_game.CurrentRoom.Items.FirstOrDefault(i => i.Name == itemName));
-        Messages.Add($"You picked up {_game.CurrentRoom.Items.FirstOrDefault(i => i.Name == itemName)}");
-        _game.CurrentRoom.Items.Remove(_game.CurrentRoom.Items.FirstOrDefault(i => i.Name == itemName));
+        System.Console.Clear();
+        Messages.Add("You cannot take this item. Try using it instead!");
+        return;
       }
-      Messages.Add("Invalid item name.");
+
+      if (_game.CurrentRoom.Items.Any(i => i.Name.ToLower() == itemName))
+      {
+        _game.CurrentPlayer.Inventory.Add(_game.CurrentRoom.Items.FirstOrDefault(i => i.Name.ToLower() == itemName));
+        System.Console.Clear();
+        Messages.Add($"You picked up {itemName}");
+        _game.CurrentRoom.Items.Remove(_game.CurrentRoom.Items.FirstOrDefault(i => i.Name.ToLower() == itemName));
+      }
+      else
+      {
+        Messages.Add("Invalid item name.");
+      }
     }
     ///<summary>
     ///No need to Pass a room since Items can only be used in the CurrentRoom

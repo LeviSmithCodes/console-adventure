@@ -23,7 +23,7 @@ namespace ConsoleAdventure.Project.Models
       Item photo = new Item("Photograph", "A photo of three astronauts and a cosmonaut, all laughing. A bubble of water floats between them.", false, false);
       Item airlock = new Item("Airlock", "A space door that opens to a vast, starry nothing with a planet below.", false, true);
       Item stasisPod = new Item("Stasis Pod", "The cryonic device that you woke up in; the door is now ajar.", false, true);
-      Item fireExtinguisher = new Item("Fire Extingusher", "Extinguishes fires. In spaaaaaaace", true, false);
+      Item fireExtinguisher = new Item("Fire Extinguisher", "Extinguishes fires. In spaaaaaaace", true, false);
       Item telescopesComputers = new Item("Telescopes Console", "A bank of computers that look to interface with and control the telescopes in the room.", false, true);
       Item SoyuzControls = new Item("Soyuz Controls", "A control panel that is very familliar to you", false, true);
 
