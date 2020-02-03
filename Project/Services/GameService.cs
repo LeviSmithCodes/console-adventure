@@ -200,6 +200,12 @@ namespace ConsoleAdventure.Project
         Messages.Add("You pull up the most recent images taken from the bank of telescopes, and you watch with horror as nuclear plumes sprout across the surface of the earth. Something went terribly wrong down there... but it's been centuries already. Everyone you ever knew or loved is dead. The realization has only started to penetrate your mind, but you now know your goal: get back down there and see if you can help what's left of humanity.");
         return true;
       }
+      if (itemName == "fire extinguisher" && _game.CurrentPlayer.Inventory.Any(i => i.Name == "Fire Extinguisher"))
+      {
+        System.Console.Clear();
+        Messages.Add("You hose down the nearest surfaces with your fire extinguisher. Nothing happens except you're pushed in the opposite direction.");
+        return true;
+      }
       Messages.Add("Invalid item name.");
       // continues game
       return true;
