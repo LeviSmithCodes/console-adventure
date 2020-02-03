@@ -82,7 +82,7 @@ namespace ConsoleAdventure.Project
 
         return true;
       }
-      Messages.Add("Invalid input. Please try again.");
+      Messages.Add("Invalid input. Please try again.\n");
       return true;
     }
     public void Help()
@@ -109,7 +109,6 @@ namespace ConsoleAdventure.Project
 
     public void Look()
     {
-
       System.Console.Clear();
       PrintRoom();
     }
@@ -140,6 +139,7 @@ namespace ConsoleAdventure.Project
       if (_game.CurrentRoom.Items.Count == 0)
       {
         Messages.Add("No items are in this room.");
+        return;
       }
       //Enumerable currentItem = _game.CurrentRoom.Items.Where(i => i.Name == itemName);
       if (_game.CurrentRoom.Items.Any(i => i.Name == itemName))
