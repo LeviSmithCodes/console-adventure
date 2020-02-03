@@ -10,12 +10,15 @@ namespace ConsoleAdventure.Project.Models
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
 
-    public Room(string name, string description)
+    public bool TrapActive { get; set; }
+
+    public Room(string name, string description, bool trapActive)
     {
       Name = name;
       Description = description;
       Items = new List<Item>();
       Exits = new Dictionary<string, IRoom>();
+      TrapActive = trapActive;
     }
 
     public IRoom ChangeRoom(string exitStr)

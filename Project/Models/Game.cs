@@ -12,10 +12,10 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       // Create Rooms
-      Room Room1 = new Room("Room1", "a cylindrical room containing your now-empty stasis pod and an airlock with a view of a heavily clouded planet (you assume it's earth).");
-      Room Room2 = new Room("Room2", "another cylindrical room containing a bank of computers, and what looks like several telescopes embedded in the wall.");
-      Room Room3 = new Room("Room3", "yet another cylindrical room, filled with what looks like the charred remains of various kinds of plants.");
-      Room Room4 = new Room("Room4", "a cramped compartement containing three harnessess and a wide variety of switches and other control devices.");
+      Room Room1 = new Room("Room1", "a cylindrical room containing your now-empty stasis pod and an airlock with a view of a heavily clouded planet (you assume it's earth).", false);
+      Room Room2 = new Room("Room2", "another cylindrical room containing a bank of computers, and what looks like several telescopes embedded in the wall.", false);
+      Room Room3 = new Room("Room3", "yet another cylindrical room, filled with what looks like the charred remains of various kinds of plants.", true);
+      Room Room4 = new Room("Room4", "a cramped compartement containing three harnessess and a wide variety of switches and other control devices.", false);
 
 
 

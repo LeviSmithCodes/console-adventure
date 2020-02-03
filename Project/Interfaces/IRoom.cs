@@ -10,5 +10,7 @@ namespace ConsoleAdventure.Project.Interfaces
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
+    bool TrapActive { get; set; }
+
   }
 }

@@ -48,16 +48,42 @@ namespace ConsoleAdventure.Project
       }
       Messages.Add("\nType 'Help' for available commands.");
     }
-    public void Go(string direction)
+    public bool Go(string direction, bool playing)
     {
       System.Console.Clear();
       if (_game.CurrentRoom.Exits.ContainsKey(direction))
       {
-        Messages.Add($"You go {direction}.");
         _game.CurrentRoom = _game.CurrentRoom.Exits[direction];
-        return;
+        if (_game.CurrentRoom.TrapActive && _game.CurrentRoom.Name == "Room3")
+        {
+          _game.CurrentRoom.TrapActive = false;
+          System.Console.WriteLine("As you open the airlock door to the next room, oxygen floods back into it - igniting once it reaches the exposed electrical panel that started the fire that previously charred the room and the plants within. Flames erupt all around you. What do you do?");
+          string response = System.Console.ReadLine().ToLower().Trim();
+          // TODO Need to check if in inventory
+          if (response == "use fire extinguisher")
+          {
+            System.Console.Clear();
+            System.Console.WriteLine("As you use the fire extinguisher to extinguish the flames, the force of the expelled material pushes you against the wall. You gain a handhold and are able to save yourself from the flames.\nPress any key to continue");
+            System.Console.ReadKey();
+            System.Console.Clear();
+            return true;
+          }
+          else
+          {
+            System.Console.Clear();
+            System.Console.WriteLine("Your efforts are ineffective. The flames spread, and your flesh burns. You die an excrutiating death.\nPress any key to continue");
+
+            System.Console.ReadKey();
+            System.Console.Clear();
+            return false;
+          }
+        }
+        Messages.Add($"You go {direction}.");
+
+        return true;
       }
       Messages.Add("Invalid input. Please try again.");
+      return true;
     }
     public void Help()
     {
@@ -162,7 +188,6 @@ namespace ConsoleAdventure.Project
       System.Console.Clear();
       if (condition == "airlock")
       {
-
         System.Console.WriteLine("Fighting every instinct in your body, you open the airlock. Your body is sucked into space, and you slowly suffocate in the absolute stillness of space.");
 
       }
@@ -174,8 +199,9 @@ namespace ConsoleAdventure.Project
       {
         System.Console.WriteLine("You close the airlock door behind you, and muscle memory takes over as you prepare the Soyuz Decent Module for launch. You feel a swell of hope for the first time since waking up... you're going back home. \n\nYou win!");
       }
-      System.Console.WriteLine("\nPress enter to continue");
-      string result = System.Console.ReadLine();
+      System.Console.WriteLine("\nPress any key to continue");
+      System.Console.ReadKey();
+      System.Console.Clear();
 
     }
   }

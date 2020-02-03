@@ -38,7 +38,7 @@ namespace ConsoleAdventure.Project.Controllers
       switch (command)
       {
         case "go":
-          _gameService.Go(option);
+          playing = _gameService.Go(option, playing);
           _gameService.PrintRoom();
           break;
         case "take":
