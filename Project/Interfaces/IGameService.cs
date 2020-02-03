@@ -13,7 +13,7 @@ namespace ConsoleAdventure.Project.Interfaces
     #region Console Commands
 
     //Stops the application
-    void Quit();
+    bool Quit(bool playing);
 
     //Should display a list of commands to the console
     void Help();
