@@ -11,15 +11,16 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       // Create Rooms
-      Room Room1 = new Room("Room1", "A cylindrical room containing your now-empty stasis pod, and an airlock with a view of a clouded planet (you assume it's earth).");
+      Room Room1 = new Room("Room1", "a cylindrical room containing your now-empty stasis pod, and an airlock with a view of a clouded planet (you assume it's earth).");
 
-      Room Room2 = new Room("Room2", "Another cylindrical room containing a bank of computers, and what looks like several telescopes embedded in the wall.");
-      Room Room3 = new Room("Room3", "Yet another cylindrical room, filled with what looks like the charred remains of various kinds of plants.");
-      Room Room4 = new Room("Room4", "A cramped compartement containing three harnessess and a wide variety of switches and other control devices.");
+      Room Room2 = new Room("Room2", "another cylindrical room containing a bank of computers, and what looks like several telescopes embedded in the wall.");
+      Room Room3 = new Room("Room3", "yet another cylindrical room, filled with what looks like the charred remains of various kinds of plants.");
+      Room Room4 = new Room("Room4", "a cramped compartement containing three harnessess and a wide variety of switches and other control devices.");
 
 
 
       // Create Items
+      Item photo = new Item("Photograph", "A photo of three astronauts and a cosmonaut, all laughing. A bubble of water floats between them.", false, false);
       Item airlock = new Item("Airlock", "A space door that opens to a vast, starry nothing with a planet below.", false, true);
       Item stasisPod = new Item("Stasis Pod", "The cryonic device that you woke up in; the door is now ajar.", false, true);
       Item fireExtinguisher = new Item("Fire Extingusher", "Extinguishes fires. In spaaaaaaace", true, false);
@@ -39,6 +40,7 @@ namespace ConsoleAdventure.Project.Models
       Room2.Items.Add(telescopesComputers);
 
       CurrentRoom = Room1;
+      // CurrentPlayer.Inventory.Add(photo);
 
 
     }
