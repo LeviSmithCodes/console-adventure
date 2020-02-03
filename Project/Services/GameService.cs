@@ -67,6 +67,7 @@ namespace ConsoleAdventure.Project
 
     public void Inventory()
     {
+      // System.Console.WriteLine($"{_game.CurrentPlayer.Inventory}");
       if (_game.CurrentPlayer.Inventory.Count == 0)
       {
         Messages.Add("There is nothing in your inventory.");
@@ -82,6 +83,7 @@ namespace ConsoleAdventure.Project
 
     public void Look()
     {
+
       System.Console.Clear();
       PrintRoom();
     }
@@ -127,27 +129,39 @@ namespace ConsoleAdventure.Project
     ///Make sure you validate the item is in the room or player inventory before
     ///being able to use the item
     ///</summary>
-    public void UseItem(string itemName)
+    public bool UseItem(string itemName)
     {
       if (itemName == "airlock" && _game.CurrentRoom.Name == "Room1")
       {
         EndGame("airlock");
-        return;
+        // ends game
+        return false;
+      }
+      if (itemName == "stasis pod" && _game.CurrentRoom.Name == "Room1")
+      {
+        EndGame("stasis pod");
+        return false;
       }
       Messages.Add("Invalid item name.");
+      // continues game
+      return true;
     }
     public void EndGame(string condition)
     {
-      switch (condition)
+      System.Console.Clear();
+      if (condition == "airlock")
       {
-        case "airlock":
-          System.Console.Clear();
-          System.Console.WriteLine("Fighting every instinct in your body, you open the airlock. Your body is sucked into space, and you slowly suffocate in the absolute stillness of space.");
-          break;
+
+        System.Console.WriteLine("Fighting every instinct in your body, you open the airlock. Your body is sucked into space, and you slowly suffocate in the absolute stillness of space.");
+
       }
-      System.Console.WriteLine("Do you want to play again? Y/N");
-      string response = System.Console.ReadLine();
-      if (response.ToLower() == "n") { }
+      if (condition == "stasis pod")
+      {
+        System.Console.WriteLine("You climb back into the stasis pod, and it automatically activates, dragging you back to unconsciousness. Years pass, and the solar panels eventually fail... you die without ever waking up.");
+      }
+      System.Console.WriteLine("\nPress enter to continue");
+      string result = System.Console.ReadLine();
+
     }
   }
 }

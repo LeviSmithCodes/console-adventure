@@ -59,7 +59,7 @@ namespace ConsoleAdventure.Project.Controllers
           _gameService.Help();
           break;
         case "use":
-          _gameService.UseItem(option);
+          playing = _gameService.UseItem(option);
           break;
         default:
           System.Console.Clear();
