@@ -12,8 +12,7 @@ namespace ConsoleAdventure.Project.Models
     public void Setup()
     {
       // Create Rooms
-      Room Room1 = new Room("Room1", "a cylindrical room containing your now-empty stasis pod, and an airlock with a view of a clouded planet (you assume it's earth).");
-
+      Room Room1 = new Room("Room1", "a cylindrical room containing your now-empty stasis pod and an airlock with a view of a heavily clouded planet (you assume it's earth).");
       Room Room2 = new Room("Room2", "another cylindrical room containing a bank of computers, and what looks like several telescopes embedded in the wall.");
       Room Room3 = new Room("Room3", "yet another cylindrical room, filled with what looks like the charred remains of various kinds of plants.");
       Room Room4 = new Room("Room4", "a cramped compartement containing three harnessess and a wide variety of switches and other control devices.");
@@ -26,6 +25,7 @@ namespace ConsoleAdventure.Project.Models
       Item stasisPod = new Item("Stasis Pod", "The cryonic device that you woke up in; the door is now ajar.", false, true);
       Item fireExtinguisher = new Item("Fire Extingusher", "Extinguishes fires. In spaaaaaaace", true, false);
       Item telescopesComputers = new Item("Telescopes Console", "A bank of computers that look to interface with and control the telescopes in the room.", false, true);
+      Item SoyuzControls = new Item("Soyuz Controls", "A control panel that is very familliar to you", false, true);
 
       // Establish Exits
       Room1.Exits.Add("east", Room2);
@@ -39,11 +39,10 @@ namespace ConsoleAdventure.Project.Models
       Room1.Items.Add(stasisPod);
       Room1.Items.Add(fireExtinguisher);
       Room2.Items.Add(telescopesComputers);
+      Room4.Items.Add(SoyuzControls);
 
       CurrentRoom = Room1;
       // CurrentPlayer.Inventory.Add(photo);
-
-
     }
 
     public Game()

@@ -29,7 +29,7 @@ namespace ConsoleAdventure.Project
         |_|                                                       
 
       ");
-      Messages.Add("You awake to the nausea of extended stasis. Your pod doors open upon sensing your slight activity, and you note that that means power is still flowing in the station. ... You ask yourself, 'What station?' As a matter of fact, you don't know who you are.\n");
+      Messages.Add("You awake to the nausea of extended cryogenics. Your stasis pod doors open upon sensing your slight activity, and you note that that means power is still flowing in the station. ... but then you realize with mounting horror that you don't know what station you're on. As a matter of fact, you don't know who you are.\n");
     }
 
     public void PrintRoom()
@@ -142,6 +142,17 @@ namespace ConsoleAdventure.Project
         EndGame("stasis pod");
         return false;
       }
+      if (itemName == "soyuz controls" && _game.CurrentRoom.Name == "Room4")
+      {
+        EndGame("soyuz controls");
+        return false;
+      }
+      if (itemName == "telescopes console" && _game.CurrentRoom.Name == "Room2")
+      {
+        System.Console.Clear();
+        Messages.Add("You pull up the most recent images taken from the bank of telescopes, and you watch with horror as nuclear plumes sprout across the surface of the earth. Something went terribly wrong down there... but it's been centuries already. Everyone you ever knew or loved is dead. The realization has only started to penetrate your mind, but you now know your goal: get back down there and see if you can help what's left of humanity.");
+        return true;
+      }
       Messages.Add("Invalid item name.");
       // continues game
       return true;
@@ -158,6 +169,10 @@ namespace ConsoleAdventure.Project
       if (condition == "stasis pod")
       {
         System.Console.WriteLine("You climb back into the stasis pod, and it automatically activates, dragging you back to unconsciousness. Years pass, and the solar panels eventually fail... you die without ever waking up.");
+      }
+      if (condition == "soyuz controls")
+      {
+        System.Console.WriteLine("You close the airlock door behind you, and muscle memory takes over as you prepare the Soyuz Decent Module for launch. You feel a swell of hope for the first time since waking up... you're going back home. \n\nYou win!");
       }
       System.Console.WriteLine("\nPress enter to continue");
       string result = System.Console.ReadLine();
