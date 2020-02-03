@@ -46,6 +46,7 @@ namespace ConsoleAdventure.Project
       {
         Messages.Add($"{exit.Key}");
       }
+      Messages.Add("\nType 'Help' for available commands.");
     }
     public void Go(string direction)
     {
@@ -60,7 +61,8 @@ namespace ConsoleAdventure.Project
     }
     public void Help()
     {
-      throw new System.NotImplementedException();
+      System.Console.Clear();
+      Messages.Add("Available commands:\nGo <Direction> \nUse <Item Name>\nTake <Item Name>\nLook\nInventory\nQuit");
     }
 
     public void Inventory()
@@ -127,7 +129,25 @@ namespace ConsoleAdventure.Project
     ///</summary>
     public void UseItem(string itemName)
     {
-      throw new System.NotImplementedException();
+      if (itemName == "airlock" && _game.CurrentRoom.Name == "Room1")
+      {
+        EndGame("airlock");
+        return;
+      }
+      Messages.Add("Invalid item name.");
+    }
+    public void EndGame(string condition)
+    {
+      switch (condition)
+      {
+        case "airlock":
+          System.Console.Clear();
+          System.Console.WriteLine("Fighting every instinct in your body, you open the airlock. Your body is sucked into space, and you slowly suffocate in the absolute stillness of space.");
+          break;
+      }
+      System.Console.WriteLine("Do you want to play again? Y/N");
+      string response = System.Console.ReadLine();
+      if (response.ToLower() == "n") { }
     }
   }
 }

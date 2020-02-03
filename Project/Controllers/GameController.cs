@@ -8,9 +8,9 @@ namespace ConsoleAdventure.Project.Controllers
 
   public class GameController : IGameController
   {
+    public bool playing = true;
     private GameService _gameService = new GameService();
 
-    public bool playing = true;
     //NOTE Makes sure everything is called to finish Setup and Starts the Game loop
     public void Run()
     {
@@ -54,6 +54,16 @@ namespace ConsoleAdventure.Project.Controllers
           //Couldn't figure out how to pass to service
           // playing = false;
           playing = _gameService.Quit(playing);
+          break;
+        case "help":
+          _gameService.Help();
+          break;
+        case "use":
+          _gameService.UseItem(option);
+          break;
+        default:
+          System.Console.Clear();
+          _gameService.Messages.Add("Invalid input.");
           break;
       }
     }
